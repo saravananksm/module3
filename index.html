@@ -13,7 +13,7 @@
 			<button ng-click="narrowDown.getMatchedMenuItems(menuName)">Narrow It Down For Me</button>
 		</div>
         <div>
-        	<h2>Available Menu Items</h2>
+        	<h2 nf-if="narrowDown.found">Available Menu Items</h2>
         	
         	<ul>        		
         		<found-items my-items="narrowDown"></found-items>
