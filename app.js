@@ -4,11 +4,11 @@
 		   .controller('NarrowItDownController',NarrowItDownController)	
 		   .service('MenuSearchService',MenuSearchService)
 		   //.directive('listItemDirective',ListItemDirective)
-		   .directive('listMenuItems',ListMenuItems);
+		   .directive('foundItems',FoundItems);
 
 
 
- 	function ListMenuItems() {
+ 	function FoundItems() {
  		var ddo ={
 		 		templateUrl:'listItem.html',
 		 		scope : {
