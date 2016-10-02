@@ -3,22 +3,28 @@
 	angular.module('NarrowItDownApp',[])
 		   .controller('NarrowItDownController',NarrowItDownController)	
 		   .service('MenuSearchService',MenuSearchService)
-		   .directive('listItemDirective',ListItemDirective)
+		   //.directive('listItemDirective',ListItemDirective)
 		   .directive('listMenuItems',ListMenuItems);
+
+
 
  	function ListMenuItems() {
  		var ddo ={
-		 		templateUrl:'listItem.html'
+		 		templateUrl:'listItem.html',
+		 		scope : {
+		 			items : =myMenuItems
+		 		}
 		 	};
 		 	return ddo;
  	}
-	function ListItemDirective() {
+
+	/*function ListItemDirective() {
 		 	var ddo ={
 		 		template:'{{item.short_name}} {{item.name}}  {{item.description}}'
 		 	};
 		 	return ddo;
 		 }	 
-
+*/
 	NarrowItDownController.$inject=['MenuSearchService'];
 	function NarrowItDownController(MenuSearchService){
 		var menuList = this;	
