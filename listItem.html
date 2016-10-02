@@ -1,5 +1,5 @@
-<li ng-repeat="item in narrowDown.found">
+<li ng-repeat="item in items">
         <!--<list-item-directive></list-item-directive>--> 
         {{item.short_name}} {{item.name}}  {{item.description}}
-        <button ng-click="narrowDown.removeItem($index);">Don't want this one!</button>
+        <button ng-click="items.removeItem($index);">Don't want this one!</button>
  </li>	
