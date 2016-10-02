@@ -12,6 +12,7 @@
  		var ddo ={
 		 		templateUrl:'listItem.html',
 		 		scope : {
+		 			found :'<',
 		 			itemsList : '=myItems'
 		 		}
 		 	};
