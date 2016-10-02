@@ -12,7 +12,7 @@
  		var ddo ={
 		 		templateUrl:'listItem.html',
 		 		scope : {
-		 			items : =myMenuItems
+		 			items : '=myMenuItems'
 		 		}
 		 	};
 		 	return ddo;
