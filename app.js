@@ -59,7 +59,6 @@
 								).then(function(result){
 									var foundItems =new Array();
 									     var menuItems = result.data.menu_items;	
-
 										 for (var i = 0; i < menuItems.length; i++) {	
 										  	if(menuItems[i].name.toLowerCase().includes(menuName.toLowerCase())){
 										 		foundItems.push(menuItems[i]);		 	 
