@@ -34,7 +34,6 @@
 		menuList.getMatchedMenuItems = function(menuName){
 			 var promise = MenuSearchService.getMatchedMenuItems(menuName);
 			  promise.then(function(result){
-			  	 menuList.found = [];
 			  	 menuList.found = result;			  	 
 			  })
 			
@@ -49,16 +48,16 @@
 	
 	MenuSearchService.$inject=['$http']
 	function MenuSearchService($http){
-			var service = this;
-			var foundItems =[];
+			var service = this;			
 			service.getMatchedMenuItems = function (menuName){
-			return $http(
+			var promise = $http(
 									{
 										method:"GET",
 										url:("https://davids-restaurant.herokuapp.com/menu_items.json")
 										//params: {name:menuName}
 									}
 								).then(function(result){
+									var foundItems =new Array();
 									     var menuItems = result.data.menu_items;	
 
 										 for (var i = 0; i < menuItems.length; i++) {	
@@ -69,6 +68,7 @@
 										
 									return foundItems;
 								});
+								return promise;
 			//
 			};
 
