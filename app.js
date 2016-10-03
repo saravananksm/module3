@@ -40,7 +40,8 @@
 			
 		};		
 
-		menuList.removeItem = function (index) {
+		menuList.removeItem = function(index) {
+			console.log("removing");
 			MenuSearchService.removeItem(index);
 		}
 	}
