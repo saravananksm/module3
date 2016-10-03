@@ -19,13 +19,7 @@
 		 	return ddo;
  	}
 
-	/*function ListItemDirective() {
-		 	var ddo ={
-		 		template:'{{item.short_name}} {{item.name}}  {{item.description}}'
-		 	};
-		 	return ddo;
-		 }	 
-*/
+	
 	NarrowItDownController.$inject=['MenuSearchService'];
 	function NarrowItDownController(MenuSearchService){
 		var menuList = this;	
@@ -40,6 +34,7 @@
 		};		
 
 		menuList.removeItem = function (index) {
+			console.log(index);
 			MenuSearchService.removeItem(index);
 		}
 	}
