@@ -60,8 +60,8 @@
 								).then(function(result){
 									     var menuItems = result.data.menu_items;	
 
-										 for (var i = 0; i < menuItems.length; i++) {		
-										 	if(menuItems[i].name.includes(menuName)){
+										 for (var i = 0; i < menuItems.length; i++) {	
+										  	if(menuItems[i].name.includes(menuName)){
 										 		foundItems.push(menuItems[i]);		 	 
 										 	}
 										 }
