@@ -50,7 +50,7 @@
 	MenuSearchService.$inject=['$http']
 	function MenuSearchService($http){
 			var service = this;
-			var foundItems =[];
+			
 			service.getMatchedMenuItems = function (menuName){
 			return $http(
 									{
@@ -60,7 +60,7 @@
 									}
 								).then(function(result){
 									     var menuItems = result.data.menu_items;	
-
+										var foundItems =[];
 										 for (var i = 0; i < menuItems.length; i++) {	
 										  	if(menuItems[i].name.toLowerCase().includes(menuName.toLowerCase())){
 										 		foundItems.push(menuItems[i]);		 	 
