@@ -34,15 +34,16 @@
 		menuList.getMatchedMenuItems = function(menuName){
 			 var promise = MenuSearchService.getMatchedMenuItems(menuName);
 			  promise.then(function(result){
-			  	 menuList.found = [];
 			  	 menuList.found = result;			  	 
 			  })
 			
 		};		
 
 		menuList.removeItem = function(index) {
-			console.log("removing");
-			MenuSearchService.removeItem(index);
+			console.log("removing" +index );
+			console.log("found" +found );
+			//MenuSearchService.removeItem(index);
+			found.splice(itemIndex,1);
 		}
 	}
 
