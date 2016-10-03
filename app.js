@@ -19,7 +19,13 @@
 		 	return ddo;
  	}
 
-	
+	/*function ListItemDirective() {
+		 	var ddo ={
+		 		template:'{{item.short_name}} {{item.name}}  {{item.description}}'
+		 	};
+		 	return ddo;
+		 }	 
+*/
 	NarrowItDownController.$inject=['MenuSearchService'];
 	function NarrowItDownController(MenuSearchService){
 		var menuList = this;	
@@ -34,7 +40,6 @@
 		};		
 
 		menuList.removeItem = function (index) {
-			console.log(index);
 			MenuSearchService.removeItem(index);
 		}
 	}
@@ -54,6 +59,7 @@
 								).then(function(result){
 									var foundItems =new Array();
 									     var menuItems = result.data.menu_items;	
+
 										 for (var i = 0; i < menuItems.length; i++) {	
 										  	if(menuItems[i].name.toLowerCase().includes(menuName.toLowerCase())){
 										 		foundItems.push(menuItems[i]);		 	 
