@@ -54,7 +54,7 @@
 			var service = this;
 			
 			service.getMatchedMenuItems = function (menuName){
-			return $http(
+			var promise = $http(
 									{
 										method:"GET",
 										url:("https://davids-restaurant.herokuapp.com/menu_items.json")
@@ -71,6 +71,7 @@
 										
 									return foundItems;
 								});
+								return promise;
 			//
 			};
 
