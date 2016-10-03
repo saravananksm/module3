@@ -29,11 +29,12 @@
 	NarrowItDownController.$inject=['MenuSearchService'];
 	function NarrowItDownController(MenuSearchService){
 		var menuList = this;	
-		 menuList.found = [];
+		 
 
 		menuList.getMatchedMenuItems = function(menuName){
 			 var promise = MenuSearchService.getMatchedMenuItems(menuName);
 			  promise.then(function(result){
+			  	 menuList.found = [];
 			  	 menuList.found = result;			  	 
 			  })
 			
