@@ -1,4 +1,4 @@
-<li ng-repeat="item in itemsList">
+<li ng-repeat="item in itemsList.found">
         <!--<list-item-directive></list-item-directive>--> 
         {{item.short_name}} {{item.name}}  {{item.description}} 
         <button ng-click="itemsList.removeItem($index)">Don't want this one!</button> 
