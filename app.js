@@ -8,7 +8,16 @@
 
 
 
- 	
+ 	function FoundItems() {
+ 		var ddo ={
+		 		templateUrl:'listItem.html',
+		 		scope : {
+		 			found :'<',
+		 			itemsList : '=myItems'
+		 		}
+		 	};
+		 	return ddo;
+ 	}
 
 	/*function ListItemDirective() {
 		 	var ddo ={
@@ -31,7 +40,7 @@
 			
 		};		
 
-		menuList.remove = function (index) {
+		menuList.removeItem = function (index) {
 			MenuSearchService.removeItem(index);
 		}
 	}
@@ -68,20 +77,5 @@
 			foundItems.splice(itemIndex,1);
 			}
 	}
-
-	function FoundItems() {
- 		var ddo ={
-		 		templateUrl:'listItem.html',
-		 		scope : {
-		 			found :'<',
-		 			//itemsList : '=myItems',
-		 			onRemove: '&'
-		 		},
-		 		controller: NarrowItDownController,
-       			controllerAs: 'controller',
-       			bindToController: true
-		 	};
-		 	return ddo;
- 	}
 })();
 

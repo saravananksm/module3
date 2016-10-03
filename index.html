@@ -14,10 +14,9 @@
 		</div>
         <div>
         	<h2 ng-if="narrowDown.found">Available Menu Items</h2>
-        	<items-loader-indicator></items-loader-indicator>
-
+        	
         	<ul>        		
-        		<found-items my-items="narrowDown.found" on-remove="narrowDown.remove(index)"></found-items>
+        		<found-items my-items="narrowDown.found"></found-items>
         	</ul>
         	
         </div>
