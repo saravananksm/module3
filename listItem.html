@@ -1,5 +1,5 @@
 <li ng-repeat="item in itemsList">
         <!--<list-item-directive></list-item-directive>--> 
         {{item.short_name}} {{item.name}}  {{item.description}} 
-        <button ng-click="itemsList.removeItem($index)">Don't want this one!</button> 
+        <button ng-click="itemsList.remove($index)">Don't want this one!</button> 
  </li>	
