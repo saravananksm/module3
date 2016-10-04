@@ -1,30 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<script type="text/javascript" src="angular.min.js"></script>
-	<script type="text/javascript" src="app.js"></script>
-</head>
-<body ng-app="NarrowItDownApp">
-	<h1>Menu Search</h1>
-	<div ng-controller="NarrowItDownController as narrowDown">
-		<div>
-			<input type="text" ng-model="menuName" >
-			<button ng-click="narrowDown.getMatchedMenuItems(menuName)">Narrow It Down For Me</button>
-		</div>
-        <div>
-        	<h2 ng-if="narrowDown.found">Available Menu Items</h2>
-        	
-        	<ul>        		
-        		<found-items my-items="narrowDown.found"></found-items>
-        	</ul>
-        	
-        </div>
+<!doctype html>
+<html lang="en" ng-app='NarrowItDownApp'>
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+	<script src="angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+<body>
+   <div class="container" ng-controller='NarrowItDownController as menuController'>
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
 
-	</div>
+    <div class="form-group">
+      <input type="text" placeholder="search term" class="form-control" ng-model="menuController.searchTerm">
+    </div>
+    <div class="form-group narrow-button">
+      <button class="btn btn-primary" ng-click="menuController.filterMenu()">Narrow It Down For Me!</button>
+    </div>
 
-	
+    <items-loader-indicator></items-loader-indicator>
 
+    
+	<found-items filtered-menu="menuController.filteredMenu"> <span>{{menuController.errorMsg}}</span></found-items> <!--
+
+
+  </div>
 
 </body>
 </html>
