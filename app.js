@@ -2,114 +2,74 @@
 'use strict';
 
 angular.module('NarrowItDownApp', [])
-.controller('NarrowItDownController', NarrowItDownController)
-.service('MenuSearchService', MenuSearchService)
-.constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
-.directive('foundItems', FoundItems);
+  .controller("NarrowItDownController",NarrowItDownController)
+  .service("MenuSearchService",MenuSearchService)
+  .directive("foundItems",foundItems);
 
-
-
-
-
-NarrowItDownController.$inject = ['MenuSearchService'];
-function NarrowItDownController(MenuSearchService) {
-	var menuController = this;
-	menuController.searchTerm = "";
-	menuController.filteredMenu = [];
-	menuController.errorMsg = ""
-
-	menuController.filterMenu = function(){
-		if (menuController.searchTerm == ""){
-			menuController.filteredMenu = [];
-			menuController.errorMsg="Nothing Found";
-			return;
-		}
-		
-		var promise = MenuSearchService.getMenuItems();
-	  
-	  
-		promise.then(function (response) {
-			var menu = response.data;
-			menuController.filteredMenu = MenuSearchService.getMatchedMenuItems(menu,menuController.searchTerm);
-			if (menuController.filteredMenu.length == 0){
-				menuController.errorMsg = "Nothing Found"
-			}
-			else{
-				menuController.errorMsg = ""
-			}
-
-		})
-			.catch(function (error) {
-			menuController.errorMsg = "Something went terribly wrong.";
-		});
-	}
-
-
+NarrowItDownController.$inject = ["MenuSearchService"];
+function NarrowItDownController(MenuSearchService){
+  var vm = this;
+  vm.found = [];
+  vm.search = function(){
+    vm.found = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
+  }
+  vm.remove = function(index){
+    vm.found.splice(index,1);
+  }
 }
 
+MenuSearchService.$inject = ["$http"];
 
-function FoundItems() {
-  var ddo = {
+function MenuSearchService($http) {
+  var service = this;
+
+  service.getMatchedMenuItems = function (searchTerm) {
+    if (!service.data) service.getData();
+    if (searchTerm === "") return [];
+    var items = service.data.menu_items;
+    var found = [];
+
+    for (var i=0; i < items.length; i++) {
+      var desc = items[i].description;
+      // console.log(desc);
+      if (desc.indexOf(searchTerm) !== -1){
+        found.push(items[i]);
+      }
+    }
+
+    console.dir(found);
+    return found;
+  };
+
+  service.getData = function() {
+    $http({
+      url: "https://davids-restaurant.herokuapp.com/menu_items.json"
+    }).then(
+      function (result) {
+        console.log(result.data);
+        service.data = result.data;
+      },
+      function (result) {
+        console.log(result.data);
+        service.getData();
+      });
+  }
+
+  service.getData();
+}
+
+function foundItems(){
+  var result = {
     templateUrl: 'foundItems.html',
     scope: {
-      filteredMenu: '<'
-//      myTitle: '@title',
- //     onRemove: '&'
-    },
-    controller: FoundItemsController,
-    controllerAs: 'foundCtl',
-    bindToController: true,
-//    link: ShoppingListDirectiveLink,
-    transclude: true
+      items: '<',
+      onRemove: '&'
+    }/*,
+    controller: ShoppingListDirectiveController,
+    controllerAs: 'list',
+    bindToController: true*/
   };
 
-  return ddo;
+  return result;
 }
-
-
-function FoundItemsController(){
-	var foundCtl = this;
-	
-	foundCtl.removeItem = function (itemIndex) {
-		foundCtl.filteredMenu.splice(itemIndex, 1);
-	};
-}
-
-
-
-
-MenuSearchService.$inject = ['$http', 'ApiBasePath']
-function MenuSearchService($http, ApiBasePath) {
-	var service = this;
-
-	service.getMenuItems = function () {
-    var response = $http({
-		method: "GET",
-		url: (ApiBasePath + "/menu_items.json")
-    });
-
-    return response;
-  };
-
-
-  service.getMatchedMenuItems = function (menu,searchTerm) {
-	var result = [];
-	var filteredmenu = [];
-
-    
-	for (var data in menu.menu_items){
-		var menuName = menu.menu_items[data].name;
-		var menuItem = menu.menu_items[data];
-		if (menuName.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1){
-			filteredmenu.push(menuItem);
-		}
-		
-	}
-
-
-    return filteredmenu;
-  };
-
-}
-
 })();

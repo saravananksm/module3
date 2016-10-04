@@ -1,4 +1,4 @@
- <li ng-repeat="item in foundCtl.filteredMenu track by $index" class="ng-binding ng-scope">
+ <li ng-repeat="item in items" class="ng-scope">
     {{item.short_name}} {{item.name}}  {{item.description}} 
-   <button ng-click="foundCtl.removeItem({index: $index});">Remove Item</button>
-   </li>
+    <button ng-click="onRemove({index: $index});">Don't want this one!</button>
+  </li>
